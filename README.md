@@ -18,7 +18,10 @@
 ```bash
 npm install
 ```
-2. Run the development server:
+
+2. Rename `env.example` to `.env`
+
+3. Run the development server:
 
 ```bash
 npm run dev

@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export const getServerSideProps = async () => {
 
-    const res = await fetch('https://638ef6a99cbdb0dbe3191566.mockapi.io/api/todos/users');
+    const res = await fetch(process.env.API_ENDPOINT);
     const data = await res.json();
     const count = 0;
     return {

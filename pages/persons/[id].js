@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export const getStaticPaths = async () => {
-    const res = await fetch('https://638ef6a99cbdb0dbe3191566.mockapi.io/api/todos/users');
+    const res = await fetch(process.env.API_ENDPOINT);
     const data = await res.json();
 
     const paths = data.map(user => {
@@ -21,7 +21,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
     const id = context.params.id;
 
-    const res = await fetch(`https://638ef6a99cbdb0dbe3191566.mockapi.io/api/todos/users/${id}`);
+    const res = await fetch(`${process.env.API_ENDPOINT}/${id}`);
     const data = await res.json();
 
     return {
