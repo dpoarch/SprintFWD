@@ -1,20 +1,73 @@
-import React, { Component } from 'react';
 import Layout from '../components/Layout/Layout';
+import styles from '../styles/Person.module.css';
+import Image from 'next/image';
+import Link from 'next/link';
 
-class person extends Component {
-    render() {
-        return (
-            <Layout title="SprintFWD - Person">
-                <div className="mt-5 p-5 mb-5 bg-light rounded-3">
-                    <div className="container-fluid py-5">
-                    <h1 className="display-5 fw-bold">Person Page</h1>
-                    <p className="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-                    <button className="btn btn-primary btn-lg" type="button">Example button</button>
-                    </div>
-                </div>
-            </Layout>
-        );
+export async function getServerSideProps() {
+
+    const res = await fetch('https://638ef6a99cbdb0dbe3191566.mockapi.io/api/todos/users');
+    const data = await res.json();
+    const count = 0;
+    return {
+        props: {
+            users: data
+        }
     }
 }
 
-export default person;
+const splitEvery = (array, length) =>
+  array.reduce((result, item, index) => {
+    if (index % length === 0) result.push([]);
+    result[Math.floor(index / length)].push(item);
+    return result;
+  }, []);
+
+export default function Person({ users }) {
+
+    return (
+        <Layout title="SprintFWD - Person">
+            <div className="mt-5 p-5 mb-5">
+                <div className="">
+                    <h1 className="display-5 fw-bold mb-5">Person Page</h1>
+
+                    {users?.length === 0 ? (
+                        <>
+                            Loading...
+                        </>
+                    ) : (
+                        <>
+                            {splitEvery(users, 3).map((user, index) => (
+                                <div className="row" key={index}>
+                                     {user?.map((eachUser, userIndex) => (
+                                        <div className="col-md-4" key={userIndex}>
+                                            <Link href={`/persons/${eachUser.id}`} className={styles.personRoute}>
+                                            <div className={`card mb-3 ${styles.animate}`} style={{ maxWidth: '524px' }}>
+                                                <div className="row no-gutters">
+                                                    <div className="col-md-4">
+                                                        <Image src={eachUser.profileImg} className={`card-img ${styles.personImg}`} width={100} height={100} alt={eachUser.firstname} />
+                                                    </div>
+                                                    <div className="col-md-8">
+                                                        <div className="card-body">
+                                                            <h5 className={styles.cardTitle}>{eachUser.firstname} {eachUser.lastname}</h5>
+
+                                                            <p className="card-text"><small className="text-primary">View Person</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </Link>
+                                        </div>
+                                     ))}
+                                
+                                </div>
+                            ))}
+
+                        </>
+                    )}
+                </div>
+            </div>
+        </Layout>
+    );
+}
+
+Person;

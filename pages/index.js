@@ -1,8 +1,7 @@
-import styles from '../styles/Home.module.css'
 import Layout from '../components/Layout/Layout'
 
 
-export default function Home() {
+ const Home = () => {
   return (
     <Layout title="SprintFWD - Home">
       <div className="mt-5 p-5 mb-5 bg-light rounded-3">
@@ -15,3 +14,5 @@ export default function Home() {
     </Layout>
   )
 }
+
+export default Home;
