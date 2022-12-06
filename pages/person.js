@@ -3,7 +3,7 @@ import styles from '../styles/Person.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export async function getServerSideProps() {
+export const getServerSideProps = async () => {
 
     const res = await fetch('https://638ef6a99cbdb0dbe3191566.mockapi.io/api/todos/users');
     const data = await res.json();
@@ -22,7 +22,7 @@ const splitEvery = (array, length) =>
     return result;
   }, []);
 
-export default function Person({ users }) {
+ const Person = ({ users }) => {
 
     return (
         <Layout title="SprintFWD - Person">
@@ -70,4 +70,4 @@ export default function Person({ users }) {
     );
 }
 
-Person;
+export default Person;

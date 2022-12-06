@@ -6,9 +6,9 @@ import Layout from '../components/Layout/Layout'
     <Layout title="SprintFWD - Home">
       <div className="mt-5 p-5 mb-5 bg-light rounded-3">
         <div className="container-fluid py-5">
-          <h1 className="display-5 fw-bold">Home Page</h1>
-          <p className="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-          <button className="btn btn-primary btn-lg" type="button">Example button</button>
+          <h1 className="display-5 fw-bold">Home</h1>
+          <p className="fs-4">Demo page for a different type of persons. <br></br> <small style={{fontSize: '14px'}}>Click the button below to see all person.</small></p>
+          <button className="btn btn-outline-primary btn-md" type="button">See All Persons</button>
         </div>
       </div>
     </Layout>
