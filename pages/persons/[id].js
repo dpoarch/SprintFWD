@@ -7,9 +7,9 @@ export const getStaticPaths = async () => {
     const res = await fetch(process.env.API_ENDPOINT);
     const data = await res.json();
 
-    const paths = data.map(user => {
+    const paths = data.map(person => {
         return {
-            params: { id: user.id.toString() }
+            params: { id: person.id.toString() }
         }
     })
     return {
@@ -26,19 +26,19 @@ export const getStaticProps = async (context) => {
 
     return {
         props: {
-            users: data
+            persons: data
         }
     }
 }
 
-const Details = ({ users }) => {
+const Details = ({ persons }) => {
     return (
         <Layout title={`SprintFWD - Person Details`}>
-            {users.length === 0 ? (<h1>No Users Found</h1>) : (
+            {persons.length === 0 ? (<h1>No Person Found</h1>) : (
                 <div className="mt-5 p-5 mb-5 bg-light rounded-3">
                 <div className="">
-                    <Image className="rounded-circle" src={users.profileImg} width={200} height={200} alt={users.firstname} />
-                    <h1 className="display-5 fw-bold">{users.firstname} {users.lastname}</h1>
+                    <Image className="rounded-circle" src={persons.profileImg} width={200} height={200} alt={persons.firstname} />
+                    <h1 className="display-5 fw-bold">{persons.firstname} {persons.lastname}</h1>
                     <div className="mt-5">
                         <div className="card-body">
                             <h5 className="card-title">Personal Information</h5>
@@ -54,7 +54,7 @@ const Details = ({ users }) => {
                                             <strong>Current Job : </strong>
                                         </div>
                                         <div className="col-md-6 text-start">
-                                            <p className="card-text text-primary">{users.jobType}</p>
+                                            <p className="card-text text-primary">{persons.jobType}</p>
                                         </div>
                                     </div>
                                     
@@ -62,10 +62,10 @@ const Details = ({ users }) => {
                                 <li className="list-group-item">
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <strong>Gender : </strong>
+                                            <strong>Postal : </strong>
                                         </div>
                                         <div className="col-md-6 text-start">
-                                            <p className="card-text">{users.gender}</p>
+                                            <p className="card-text">{persons.postal}</p>
                                         </div>
                                     </div>
                                     
@@ -76,7 +76,7 @@ const Details = ({ users }) => {
                                             <strong>Address : </strong>
                                         </div>
                                         <div className="col-md-6 text-start">
-                                            <p className="card-text">{users.address}, {users.postal}</p>
+                                            <p className="card-text">{persons.address}, {persons.postal}</p>
                                         </div>
                                     </div>
                                 </li>
@@ -86,7 +86,7 @@ const Details = ({ users }) => {
                                             <strong>Country : </strong>
                                         </div>
                                         <div className="col-md-6 text-start">
-                                            <p className="card-text">{users.country}</p>
+                                            <p className="card-text">{persons.country}</p>
                                         </div>
                                     </div>
                                 </li>
@@ -96,7 +96,7 @@ const Details = ({ users }) => {
                                             <strong>Contact : </strong>
                                         </div>
                                         <div className="col-md-6 text-start">
-                                            <p className="card-text">{users.phone}</p>
+                                            <p className="card-text">{persons.phone}</p>
                                         </div>
                                     </div>
                                 </li>
@@ -107,7 +107,7 @@ const Details = ({ users }) => {
                         
                         <div className="card-body mt-5">
                             <Link href="/person" className="card-link mx-5">Back</Link>
-                            <Link href={`tel:${users.phone}`} className="card-link">Contact Person</Link>
+                            <Link href={`tel:${persons.phone}`} className="card-link">Contact Person</Link>
                         </div>
                     </div>
                 </div>

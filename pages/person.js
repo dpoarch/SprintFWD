@@ -10,7 +10,7 @@ export const getServerSideProps = async () => {
     const count = 0;
     return {
         props: {
-            users: data
+            persons: data
         }
     }
 }
@@ -22,7 +22,7 @@ const splitEvery = (array, length) =>
     return result;
   }, []);
 
- const Person = ({ users }) => {
+ const Person = ({ persons }) => {
 
     return (
         <Layout title="SprintFWD - Person">
@@ -30,25 +30,25 @@ const splitEvery = (array, length) =>
                 <div className="">
                     <h1 className="display-5 fw-bold mb-5">Person Page</h1>
 
-                    {users?.length === 0 ? (
+                    {persons?.length === 0 ? (
                         <>
                             Loading...
                         </>
                     ) : (
                         <>
-                            {splitEvery(users, 3).map((user, index) => (
+                            {splitEvery(persons, 3).map((data, index) => (
                                 <div className="row" key={index}>
-                                     {user?.map((eachUser, userIndex) => (
-                                        <div className="col-md-4" key={userIndex}>
-                                            <Link href={`/persons/${eachUser.id}`} className={styles.personRoute}>
+                                     {data?.map((person, personIndex) => (
+                                        <div className="col-md-4" key={personIndex}>
+                                            <Link href={`/persons/${person.id}`} className={styles.personRoute}>
                                             <div className={`card mb-3 ${styles.animate}`} style={{ maxWidth: '524px' }}>
                                                 <div className="row no-gutters">
                                                     <div className="col-md-4">
-                                                        <Image src={eachUser.profileImg} className={`card-img ${styles.personImg}`} width={100} height={100} alt={eachUser.firstname} />
+                                                        <Image src={person.profileImg} className={`card-img ${styles.personImg}`} width={100} height={100} alt={person.firstname} />
                                                     </div>
                                                     <div className="col-md-8">
                                                         <div className="card-body">
-                                                            <h5 className={styles.cardTitle}>{eachUser.firstname} {eachUser.lastname}</h5>
+                                                            <h5 className={styles.cardTitle}>{person.firstname} {person.lastname}</h5>
 
                                                             <p className="card-text"><small className="text-primary">View Person</small></p>
                                                         </div>
