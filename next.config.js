@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['cloudflare-ipfs.com'],
+    domains: ['images.unsplash.com'],
     remotePatterns: [
       {
         protocol: "https",

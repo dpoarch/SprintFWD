@@ -1,24 +1,27 @@
-.animate{
+.animate {
     border: 0px !important;
     transition: 0.5s;
     cursor: pointer;
     box-shadow: 0px 0px 0px 0px transparent;
 }
-.animate:hover{
+
+.animate:hover {
     transform: scale(1.1);
     box-shadow: 0px 3px 17px 0px #22222257;
     color: #006bffe3;
     opacity: 1 !important;
 }
 
-.cardTitle{
+.cardTitle {
     color: inherit !important;
 }
-.personRoute{
+
+.personRoute {
     text-decoration: none;
     color: unset;
 }
-.personImg{
+
+.personImg {
     width: auto;
     height: auto;
 }
